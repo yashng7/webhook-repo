@@ -3,10 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webhook Events</title>
+    <title>Webhook Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Webhook Events Dashboard</h1>
-    <p>Infrastructure ready. UI coming in Soon.</p>
+    <div class="layout-grid">
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>Monitor_01</h1>
+            </div>
+            
+            <div class="status-module">
+                <div class="status-item">
+                    <span class="status-dot" id="connection-status"></span>
+                    <span class="status-label">Live</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-dot active"></span>
+                    <span class="status-label">Sync</span>
+                </div>
+            </div>
+
+            <div class="meta-info">
+                <p>LAST UPDATE</p>
+                <span id="last-updated" class="mono">Waiting...</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="toolbar">
+                <div class="filter-wrapper">
+                    <select id="action-filter">
+                        <option value="">Filter: All Events</option>
+                        <option value="PUSH">Push</option>
+                        <option value="PULL_REQUEST">Pull Request</option>
+                        <option value="MERGE">Merge</option>
+                    </select>
+                </div>
+                
+                <div class="refresh-indicator">
+                    <span class="timer-label">Auto-refresh</span>
+                    <span id="countdown" class="mono">15</span>
+                </div>
+            </header>
+
+            <div id="events-container" class="events-list">
+                <div class="empty-state">System Ready. Waiting for stream...</div>
+            </div>
+            
+            <footer class="list-footer">
+                <span>Total Events: <strong id="total-count">0</strong></span>
+            </footer>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>

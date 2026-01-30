@@ -19,7 +19,7 @@ services:
       - "5000:5000"
     environment:
       - MONGO_URI=mongodb://mongo:27017/webhook_db
-      - WEBHOOK_SECRET=your-secret-key
+      - WEBHOOK_SECRET=your_webhook_secret_here
     depends_on:
       - mongo
     networks:
@@ -38,6 +38,20 @@ services:
     networks:
       - webhook-network
     restart: unless-stopped
+
+  # ngrok:
+  #   image: ngrok/ngrok:latest
+  #   container_name: webhook-ngrok
+  #   command: start --all --config /etc/ngrok.yml
+  #   volumes:
+  #     - ./ngrok.yml:/etc/ngrok.yml:ro
+  #   ports:
+  #     - "4040:4040"
+  #   depends_on:
+  #     - api
+  #   networks:
+  #     - webhook-network
+  #   restart: unless-stopped
 
 volumes:
   mongo-data:
